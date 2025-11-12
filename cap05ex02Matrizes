@@ -1,0 +1,19 @@
+matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+soma = 0
+for linha in matrix:
+    for j in linha:
+        soma += j
+
+print(soma)
+
+'''transposta = [[matrix [j][i] for j in range(len(matrix))] for i in range(len(matrix[0]))]
+print(transposta)'''
+
+transposta = []
+for i in range(len(matrix[0])): #percorre colunas
+    linha_transposta = []
+    for j in range(len(matrix)): #percorre linhas
+        linha_transposta.append(matrix[j][i])
+    transposta.append(linha_transposta)
+
+print (transposta)

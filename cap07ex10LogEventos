@@ -1,0 +1,42 @@
+import datetime
+import os
+
+LOG_FILE = "log.txt"
+EVENT_LIMIT = 10
+
+def registrar_evento(mensagem):
+    try:
+        #Conta quantas linhas já existem no log
+        if os.path.exists(LOG_FILE): #Checa se o arquivo exite
+            with open(LOG_FILE, "r", encoding="utf-8") as log:
+                num_eventos = len(log.readlines())
+        else:
+            num_eventos = 0
+
+        if num_eventos >= EVENT_LIMIT:
+            data_atual = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+            arquivo_arquivado = f"log_{data_atual}.txt"
+            os.rename(LOG_FILE, arquivo_arquivado)
+            print(f"[INFO] Log arquivado como: {arquivo_arquivado}")
+
+        #Escreve o evento no Log atual
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        with open(LOG_FILE, "a", encoding="utf-8") as log:
+            log.write(f"[{timestamp}] {mensagem}\n")
+    
+    except PermissionError:
+        print("[ERRO] Permissão negada para escrever no arquivo de log.")
+    except OSError as e:
+        print(f"[ERRO] Falha ao acessar o arquivo de log: {e}")
+
+#Loop de eventos reais
+
+print("Digite algo para registrar no log (ou 'sair' para encerrar):")
+
+while True:
+    evento = input('>>>')
+    if evento.lower().strip() == "sair":
+        print("Encerrando registro de eventos.")
+        break
+    registrar_evento(f"Usuário digitou: {evento}")
+    print("Evento registrado com sucesso!")

@@ -1,0 +1,6 @@
+[2025-10-29 13:12:34] Usuário digitou: adafa
+[2025-10-29 13:12:36] Usuário digitou: 11
+[2025-10-29 13:12:38] Usuário digitou: 12
+[2025-10-29 13:12:39] Usuário digitou: 13
+[2025-10-29 13:12:40] Usuário digitou: 14
+[2025-10-29 13:12:42] Usuário digitou: 15 
